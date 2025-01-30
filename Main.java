@@ -14,7 +14,7 @@ class Main {
             + " viédazes!";
 
     Auteur sophocle = new Auteur("Sophocle", 95, citation_antigone, 0, "", 60, citation_limiers);
-
+         System.out.println(sophocle.getNom());
     String citation_hécube =
         "et elle, ayant entendu la parole des maîtres, saisissant ses voiles par l'épaule, les\n"
             + " déchira jusqu'à la hanche, à hauteur du nombril, montra ses seins et son buste,\n"
@@ -55,7 +55,7 @@ class Main {
             + " ";
 
     Auteur euripide = new Auteur("Euripide", 92, citation_hécube, 0, "", 80, citation_cyclope);
-
+            System.out.println(euripide.getNom());
     String citation_guêpes =
         "TRYGÉE : Tiens, voilà quelqu'un qui s'amène avec une couronne de lauriers sur la tête.\n"
             + "LE SERVITEUR : Qui ça peut-il être ?\n"
@@ -66,7 +66,7 @@ class Main {
         "La fortune a vite fait de changer en mal et de régner sous une autre face.";
 
     Auteur aristophane = new Auteur("Aristophane", 5, citation_thesmophories, 100, citation_guêpes, 0, "");
-
+            System.out.println(aristophane.getNom());
     // Ajoutez vos tests ici
     
     assert 2 == 2;
