@@ -70,5 +70,6 @@ class Main {
     // Ajoutez vos tests ici
     
     assert 2 == 2;
+    System.out.println("TOTO");
   }
 }
