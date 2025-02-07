@@ -1,23 +1,32 @@
 class Journée {
-    Style style_matin;
-    Style style_après_midi;
-    Style style_soirée;
-    
-    public Journée(Style matin, Style après_midi, Style soirée) {
-	this.style_matin = matin;
-	this.style_après_midi = après_midi;
-	this.style_soirée = soirée;
+   private Epreuve epreuveMatin;
+   private Epreuve epreuveAprèsMidi;
+    private Epreuve epreuveSoirée;
+    public Journée(Epreuve epreuveMatin, Epreuve epreuveAprèsMidi, Epreuve epreuveSoirée) {
+        this.epreuveMatin = epreuveMatin;
+        this.epreuveAprèsMidi = epreuveAprèsMidi;
+        this.epreuveSoirée = epreuveSoirée;
     }
+    public Epreuve getEpreuveMatin() {
+        return epreuveMatin;
+    }
+    public Epreuve getEpreuveAprèsMidi() {
+        return epreuveAprèsMidi;
+    }
+    public Epreuve getEpreuveSoirée() {
+        return epreuveSoirée;
+    }
+   /*  #todo : deux fonction  1er : scoreTotalAuteur  param : 1auteur
+    * 2eme fonctions gagnant pram : 2 auteur renvoie Vrai si auteur 1 gagne 
 
-    public Style get_matin() {
-	return this.style_matin;
-    }
-    
-    public Style get_après_midi() {
-	return this.style_après_midi;
-    }
-    
-    public Style get_soirée() {
-	return this.style_soirée;
-    }
+    */
+    public int scoreAuteur( Auteur a) {
+        int scoreMatin = this.epreuveMatin.auteurScore(a);
+        int scoreApr = this.epreuveAprèsMidi.auteurScore(a);
+        int scoreSoir = this.epreuveSoirée.auteurScore(a);
+            return scoreMatin + scoreApr + scoreSoir;
+}
+    public boolean gagnant(Auteur a, Auteur b) {
+       return this.scoreAuteur(a) >= this.scoreAuteur(b);
+    }    
 }

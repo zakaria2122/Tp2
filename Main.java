@@ -1,5 +1,6 @@
 import dionysies.Tournoi;
 
+@SuppressWarnings("unused")
 class Main {
   public static void main(String[] args) {
     String citation_antigone =
@@ -13,8 +14,8 @@ class Main {
             + " collier! A vous voir, vous n'êtes que des outres, des jacasses et des\n"
             + " viédazes!";
 
-    Auteur sophocle = new Auteur("Sophocle", 95, citation_antigone, 0, "", 60, citation_limiers);
-         System.out.println(sophocle.getNom());
+            Auteur sophocle = new Auteur("Sophocle", citation_antigone, 95, "", 0, citation_limiers, 60);
+            System.out.println(sophocle.getNom());
     String citation_hécube =
         "et elle, ayant entendu la parole des maîtres, saisissant ses voiles par l'épaule, les\n"
             + " déchira jusqu'à la hanche, à hauteur du nombril, montra ses seins et son buste,\n"
@@ -54,7 +55,7 @@ class Main {
             + " festin.\n"
             + " ";
 
-    Auteur euripide = new Auteur("Euripide", 92, citation_hécube, 0, "", 80, citation_cyclope);
+    Auteur euripide = new Auteur("Euripide", citation_hécube, 0, "", 80, citation_cyclope,70);
             System.out.println(euripide.getNom());
     String citation_guêpes =
         "TRYGÉE : Tiens, voilà quelqu'un qui s'amène avec une couronne de lauriers sur la tête.\n"
@@ -65,11 +66,66 @@ class Main {
     String citation_thesmophories =
         "La fortune a vite fait de changer en mal et de régner sous une autre face.";
 
-    Auteur aristophane = new Auteur("Aristophane", 5, citation_thesmophories, 100, citation_guêpes, 0, "");
+        Auteur aristophane = new Auteur("Aristophane", citation_thesmophories, 5, citation_guêpes, 100, "", 0);
             System.out.println(aristophane.getNom());
     // Ajoutez vos tests ici
     
-    assert 2 == 2;
+    // assert 2 == 2;
     System.out.println("TOTO");
+    assert euripide.getNom().equals("Euripide");
+    assert aristophane.getNom().equals("Aristophane")  ;
+    assert sophocle.getNom().equals("Sophocle");
+    assert sophocle.getQualité_tragédie() == 95;
+
+
+    assert sophocle.pointFort() == Style.TRAGÉDIE;
+    assert euripide.pointFort() == Style.DRAME;
+    assert aristophane.pointFort() == Style.TRAGÉDIE;
+
+    assert sophocle.qualitéStyle(Style.TRAGÉDIE) ==  sophocle.getQualité_tragédie();
+    assert sophocle.qualitéStyle(Style.COMÉDIE) ==  sophocle.getQualité_comédie();
+    assert sophocle.qualitéStyle(Style.DRAME) ==  sophocle.getQualité_drame();
+
+    assert sophocle.citationStyle(Style.TRAGÉDIE) ==  sophocle.getCitation_tragédie();
+    assert aristophane.citationStyle(Style.COMÉDIE) ==  aristophane.getCitation_comédie();
+    assert euripide.citationStyle(Style.TRAGÉDIE) ==  euripide.getCitation_tragédie();
+      // Création des journées
+    
+    // Première journée
+    Epreuve matin1 = new Epreuve(Style.COMÉDIE, 150);
+    Epreuve aprem1 = new Epreuve(Style.DRAME, 80);
+    Epreuve soiree1 = new Epreuve(Style.TRAGÉDIE, 200);
+    Journée j1 = new Journée(matin1, aprem1, soiree1);
+
+    // Deuxième journée
+    Epreuve matin2 = new Epreuve(Style.COMÉDIE, 80);
+    Epreuve aprem2 = new Epreuve(Style.DRAME, 100);
+    Epreuve soiree2 = new Epreuve(Style.TRAGÉDIE, 35);
+    Journée j2 = new Journée(matin2, aprem2, soiree2);
+
+    // Ecrivez vos tests pour la classe Journée ici
+
+    assert j1.scoreAuteur(aristophane) == matin1.auteurScore(aristophane) + aprem1.auteurScore(aristophane) + soiree1.auteurScore(aristophane);
+    assert j1.scoreAuteur(euripide) == matin1.auteurScore(euripide) + aprem1.auteurScore(euripide) + soiree1.auteurScore(euripide);
+    assert j1.scoreAuteur(sophocle) == matin1.auteurScore(sophocle) + aprem1.auteurScore(sophocle) + soiree1.auteurScore(sophocle);
+    System.out.println(j1);
+    // Gestion du tournoi
+    Tournoi<Auteur> t = new Tournoi<Auteur>("Tournoi des auteurs");
+    System.out.println(t);
+    // inscription des auteurs
+    t.inscrire(euripide);
+    t.inscrire(sophocle);
+    t.inscrire(aristophane);
+    //demarrage du tournoi
+    t.débute();
+    //lancer le premier match  
+  Auteur A = t.participantAProchaineJournée();
+  Auteur B = t.participantBProchaineJournée();
+  boolean g = j1.gagnant(A, B);
+  System.out.println(g);
+  System.out.println(A);
+  System.out.println(B);
   }
+
+
 }

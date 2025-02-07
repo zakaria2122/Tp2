@@ -1,0 +1,6 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "/home/iut45/Etudiants/o22403771/Documents/2emeSemestres/qualiteDev/tournoi /tournoi.jar"
+    ]
+}
